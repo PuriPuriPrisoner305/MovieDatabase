@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -35,16 +34,7 @@
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
-                                                        <cells>
-                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hIn-u2-xUU">
-                                                                <rect key="frame" x="0.0" y="27.333333333333332" width="128" height="127.99999999999999"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Iwe-H5-GMz">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="127.99999999999999"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                </collectionViewCellContentView>
-                                                            </collectionViewCell>
-                                                        </cells>
+                                                        <cells/>
                                                         <connections>
                                                             <outlet property="dataSource" destination="Y6W-OH-hqX" id="tvs-Nk-Y2v"/>
                                                             <outlet property="delegate" destination="Y6W-OH-hqX" id="Vme-Xy-sYn"/>
@@ -79,6 +69,33 @@
                                                             <constraint firstItem="jHN-ah-Qvr" firstAttribute="leading" secondItem="Iec-Ps-R4g" secondAttribute="leading" constant="15" id="zL9-3W-abD"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bBF-4s-lrl" userLabel="Trailer">
+                                                        <rect key="frame" x="0.0" y="336" width="375" height="236.66666666666663"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trailer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dfh-X3-Aam" userLabel="Trailer">
+                                                                <rect key="frame" x="15.000000000000004" y="0.0" width="53.333333333333343" height="21.666666666666668"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Vi-dr-X5Q" userLabel="Trailer Video" customClass="YouTubePlayerView" customModule="YouTubePlayer">
+                                                                <rect key="frame" x="15" y="36.666666666666686" width="345" height="200"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="200" id="YZI-rx-TBS"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="5Vi-dr-X5Q" secondAttribute="trailing" constant="15" id="2Xv-em-IRP"/>
+                                                            <constraint firstItem="Dfh-X3-Aam" firstAttribute="leading" secondItem="bBF-4s-lrl" secondAttribute="leading" constant="15" id="83T-Bi-UeB"/>
+                                                            <constraint firstItem="5Vi-dr-X5Q" firstAttribute="top" secondItem="Dfh-X3-Aam" secondAttribute="bottom" constant="15" id="N0F-fk-wuI"/>
+                                                            <constraint firstItem="5Vi-dr-X5Q" firstAttribute="leading" secondItem="bBF-4s-lrl" secondAttribute="leading" constant="15" id="jm7-D9-BJc"/>
+                                                            <constraint firstItem="Dfh-X3-Aam" firstAttribute="top" secondItem="bBF-4s-lrl" secondAttribute="top" id="pu2-X8-jYO"/>
+                                                            <constraint firstAttribute="bottom" secondItem="5Vi-dr-X5Q" secondAttribute="bottom" id="sHH-Le-wba"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
@@ -86,7 +103,10 @@
                                                     <constraint firstItem="MF7-xb-xN8" firstAttribute="leading" secondItem="fjH-4L-iTX" secondAttribute="leading" id="C49-yN-2a5"/>
                                                     <constraint firstItem="E1I-1I-mea" firstAttribute="centerX" secondItem="MF7-xb-xN8" secondAttribute="centerX" id="FTL-Yd-1yj"/>
                                                     <constraint firstItem="MF7-xb-xN8" firstAttribute="top" secondItem="fjH-4L-iTX" secondAttribute="top" id="O9T-d9-vPf"/>
+                                                    <constraint firstItem="bBF-4s-lrl" firstAttribute="leading" secondItem="fjH-4L-iTX" secondAttribute="leading" id="P5t-CZ-vsB"/>
                                                     <constraint firstItem="Iec-Ps-R4g" firstAttribute="leading" secondItem="fjH-4L-iTX" secondAttribute="leading" id="TGE-31-t6g"/>
+                                                    <constraint firstAttribute="trailing" secondItem="bBF-4s-lrl" secondAttribute="trailing" id="UZA-v7-bfz"/>
+                                                    <constraint firstItem="bBF-4s-lrl" firstAttribute="top" secondItem="Iec-Ps-R4g" secondAttribute="bottom" constant="80.333333333333343" id="mMQ-L0-bIk"/>
                                                     <constraint firstItem="Iec-Ps-R4g" firstAttribute="top" secondItem="MF7-xb-xN8" secondAttribute="bottom" constant="15" id="oEy-GI-HQC"/>
                                                     <constraint firstAttribute="trailing" secondItem="Iec-Ps-R4g" secondAttribute="trailing" id="qsG-ff-aCn"/>
                                                     <constraint firstItem="MF7-xb-xN8" firstAttribute="height" secondItem="fjH-4L-iTX" secondAttribute="height" multiplier="0.25" id="qwR-eX-9Tr"/>
@@ -125,6 +145,8 @@
                         <outlet property="imageCollectionView" destination="MF7-xb-xN8" id="qqp-mV-A2C"/>
                         <outlet property="overviewDetailLabel" destination="jHN-ah-Qvr" id="jHT-c2-GUF"/>
                         <outlet property="pageView" destination="E1I-1I-mea" id="LUr-ro-VSM"/>
+                        <outlet property="trailerView" destination="bBF-4s-lrl" id="xs5-8i-i4l"/>
+                        <outlet property="videoPlayer" destination="5Vi-dr-X5Q" id="ejf-6Q-eIW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -19,6 +19,7 @@ PODS:
   - RxTest (6.5.0):
     - RxSwift (= 6.5.0)
   - SkeletonView (1.30.4)
+  - YouTubePlayer (0.7.2)
 
 DEPENDENCIES:
   - Kingfisher (~> 7.0)
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - RxSwift (= 6.5.0)
   - RxTest (= 6.5.0)
   - SkeletonView
+  - YouTubePlayer
 
 SPEC REPOS:
   trunk:
@@ -42,6 +44,7 @@ SPEC REPOS:
     - RxSwift
     - RxTest
     - SkeletonView
+    - YouTubePlayer
 
 SPEC CHECKSUMS:
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
@@ -54,7 +57,8 @@ SPEC CHECKSUMS:
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   RxTest: eb2d23adefc5a5ebf5779c7792fa3edfe6ebcc17
   SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
+  YouTubePlayer: 2b5f2830d8f9b2cde942083211291e382c9e6bd5
 
-PODFILE CHECKSUM: 32da81324343a884ab49d58f34e2cbdf10115e5f
+PODFILE CHECKSUM: ea90e82674964b6e57b475b77fb81e59e57179d9
 
 COCOAPODS: 1.12.0

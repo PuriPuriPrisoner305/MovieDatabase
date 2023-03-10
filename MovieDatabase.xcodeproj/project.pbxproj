@@ -21,7 +21,6 @@
 		22D18A6429B9D917006CF207 /* MovieDatabaseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D18A6329B9D917006CF207 /* MovieDatabaseUITestsLaunchTests.swift */; };
 		22D18A7329B9D9DD006CF207 /* HomeScreenView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D18A7229B9D9DD006CF207 /* HomeScreenView.storyboard */; };
 		22D18A7529B9D9ED006CF207 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D18A7429B9D9ED006CF207 /* HomeScreenView.swift */; };
-		22D3F60D29BA470000A26EF4 /* libSkeletonView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D3F60C29BA470000A26EF4 /* libSkeletonView.a */; };
 		22D3F61029BAE16D00A26EF4 /* MovieDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D3F60F29BAE16D00A26EF4 /* MovieDetailView.storyboard */; };
 		22D3F61229BAF1BD00A26EF4 /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3F61129BAF1BD00A26EF4 /* MovieDetailView.swift */; };
 		22D3F61429BAF3B700A26EF4 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3F61329BAF3B700A26EF4 /* MovieDetailViewModel.swift */; };
@@ -58,6 +57,7 @@
 		2201398F29BA2D700048EA67 /* libKingfisher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libKingfisher.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		222B833F29B9FC7600AB4C73 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		222B834029B9FC7600AB4C73 /* MovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
+		2292918929BB56E600568FEB /* libyoutube-ios-player-helper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libyoutube-ios-player-helper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D18A3D29B9D913006CF207 /* MovieDatabase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieDatabase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D18A4029B9D913006CF207 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22D18A4229B9D913006CF207 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,7 +98,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22D3F60D29BA470000A26EF4 /* libSkeletonView.a in Frameworks */,
 				7DCDE6FE442962C7F1481625 /* libPods-MovieDatabase.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,6 +238,7 @@
 		6641E4FDC85A557F8B86CA28 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2292918929BB56E600568FEB /* libyoutube-ios-player-helper.a */,
 				22D3F60C29BA470000A26EF4 /* libSkeletonView.a */,
 				2201398F29BA2D700048EA67 /* libKingfisher.a */,
 				22F7ECA729BA089000F2434D /* libKingfisher.a */,
@@ -273,14 +273,13 @@
 				22D18A3929B9D913006CF207 /* Sources */,
 				22D18A3A29B9D913006CF207 /* Frameworks */,
 				22D18A3B29B9D913006CF207 /* Resources */,
+				0BCAEA0C14CAAB486DFFFFE4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = MovieDatabase;
-			packageProductDependencies = (
-			);
 			productName = MovieDatabase;
 			productReference = 22D18A3D29B9D913006CF207 /* MovieDatabase.app */;
 			productType = "com.apple.product-type.application";
@@ -355,8 +354,6 @@
 				Base,
 			);
 			mainGroup = 22D18A3429B9D913006CF207;
-			packageReferences = (
-			);
 			productRefGroup = 22D18A3E29B9D913006CF207 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -400,6 +397,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0BCAEA0C14CAAB486DFFFFE4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MovieDatabase/Pods-MovieDatabase-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MovieDatabase/Pods-MovieDatabase-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MovieDatabase/Pods-MovieDatabase-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		20DDA37472BBBC7C6A94122A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

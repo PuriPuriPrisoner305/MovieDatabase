@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1410"
+   LastUpgradeVersion = "1300"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "10ABC797834D54286D4AE5D72BA37C4A"
-               BuildableName = "libPods-MovieDatabase.a"
-               BlueprintName = "Pods-MovieDatabase"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+               BlueprintIdentifier = "6273C43DC7FF94E93DBFF580DB584296"
+               BuildableName = "libYouTubePlayer.a"
+               BlueprintName = "YouTubePlayer"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

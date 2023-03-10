@@ -8,7 +8,7 @@ target 'MovieDatabase' do
  pod 'SkeletonView'
  pod "RxGesture"
  pod 'RxDataSources', '~> 5.0'
-
+ pod 'YouTubePlayer'
 end
   # Pods for MovieDatabase
 

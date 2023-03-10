@@ -43,9 +43,10 @@ struct VideoEntity: Codable {
 }
 
 struct VideoResultEntity: Codable {
-    let name, site, type: String?
+    let key, name, site, type: String?
     
     enum CodingKeys: String, CodingKey {
+        case key
         case name
         case site
         case type

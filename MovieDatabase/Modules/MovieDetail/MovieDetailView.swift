@@ -7,12 +7,16 @@
 
 import UIKit
 import RxSwift
+import YouTubePlayer
 
 class MovieDetailView: UIViewController {
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var pageView: UIPageControl!
     @IBOutlet weak var overviewDetailLabel: UILabel!
     
+    @IBOutlet weak var videoPlayer: YouTubePlayerView!
+    
+    @IBOutlet weak var trailerView: UIView!
     var viewModel = MovieDetailViewModel()
     
     var movieID = 0
@@ -23,6 +27,7 @@ class MovieDetailView: UIViewController {
         setupCollectionView()
         listenToViewModel()
         fetchDetailData()
+        setupVideoPlayer()
     }
     
     func fetchDetailData() {
@@ -30,19 +35,14 @@ class MovieDetailView: UIViewController {
     }
     
     func listenToViewModel() {
-        viewModel.movieDetail
-            .subscribe(onNext: { [weak self] data in
-                guard let self = self else { return }
-                self.overviewDetailLabel.text = data.overview
-                
-            }).disposed(by: bag)
-        
         viewModel.onSuccessFetchData
             .subscribe(onNext: { [weak self] value in
                 guard let self = self else { return }
                 if value {
                     self.imageCollectionView.reloadData()
+                    self.setupView()
                     self.setupPageView()
+                    self.setupVideoPlayer()
                 }
             }).disposed(by: bag)
     }
@@ -51,6 +51,9 @@ class MovieDetailView: UIViewController {
         imageCollectionView.register(ImageCell.nib, forCellWithReuseIdentifier: ImageCell.identifier)
     }
     
+    func setupView() {
+        overviewDetailLabel.text = viewModel.movieDetail?.overview ?? "-"
+    }
     func setupPageView() {
         self.pageView.currentPage = 0
         self.pageView.numberOfPages = viewModel.imageUrl.count
@@ -68,6 +71,22 @@ class MovieDetailView: UIViewController {
         }
         timer.fire()
     }
+    
+    func setupVideoPlayer() {
+        guard let result = viewModel.movieDetail?.videos?.results else { return }
+        for data in result {
+            guard let type = data.type,
+                  let site = data.site
+            else { return }
+            if type.lowercased() == "trailer" && site.lowercased() == "youtube" {
+                guard let key = data.key,
+                      let videoUrl = URL(string: "ttps://www.youtube.com/watch?v=\(key)")
+                else { return }
+                videoPlayer.loadVideoURL(videoUrl)
+                break
+            }
+        }
+    }
 
 }
 
@@ -79,13 +98,16 @@ extension MovieDetailView: UICollectionViewDataSource, UICollectionViewDelegateF
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.identifier, for: indexPath) as! ImageCell
         cell.imageView.kf.setImage(with: viewModel.imageUrl[indexPath.row])
-        let currentIndexPath = self.imageCollectionView.indexPathsForVisibleItems.first
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width, height: 300)
+        if collectionView == imageCollectionView {
+            return CGSize(width: collectionView.frame.size.width, height: 350)
+        } else {
+            return CGSize(width: 0, height: 0)
         }
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0

@@ -11,9 +11,9 @@ import RxSwift
 class MovieDetailViewModel {
     let apiManager = ApiManager()
     let bag = DisposeBag()
-    var movieDetail = PublishSubject<MovieDetailEntity>()
     let onSuccessFetchData = PublishSubject<Bool>()
     
+    var movieDetail: MovieDetailEntity?
     var imageUrl = [URL?]()
     
     func fetchMovieDetail(id: Int) {
@@ -23,8 +23,8 @@ class MovieDetailViewModel {
                 guard let self = self,
                       let data = data
                 else { return }
-                self.movieDetail.onNext(data)
                 self.imageUrl = self.getImageUrl(data.images?.backdrops)
+                self.movieDetail = data
                 self.onSuccessFetchData.onNext(true)
             }, onError: { error in
                 // error handling

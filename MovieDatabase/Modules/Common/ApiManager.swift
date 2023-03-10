@@ -56,7 +56,7 @@ extension ApiManager {
         case movieDetail(id: Int)
         
         func url() -> String {
-            var apiKey = "f911faef7aa9f46f51a69f1843e890ba"
+            let apiKey = "f911faef7aa9f46f51a69f1843e890ba"
             switch self {
             case .movieDiscover(let page):
                 return "https://api.themoviedb.org/3/discover/movie?api_key=\(apiKey)&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=\(page)&with_watch_monetization_types=flatrate"
