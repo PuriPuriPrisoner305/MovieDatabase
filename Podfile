@@ -6,6 +6,9 @@ target 'MovieDatabase' do
  pod 'RxCocoa', '6.5.0'
  pod 'Kingfisher', '~> 7.0'
  pod 'SkeletonView'
+ pod "RxGesture"
+ pod 'RxDataSources', '~> 5.0'
+
 end
   # Pods for MovieDatabase
 

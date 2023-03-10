@@ -5,61 +5,83 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MovieCell" customModule="MovieDatabase" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="259" height="343"/>
+            <rect key="frame" x="0.0" y="0.0" width="259" height="297"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="259" height="343"/>
+                <rect key="frame" x="0.0" y="0.0" width="259" height="297"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m8C-YO-T3F" userLabel="Poster Image">
-                        <rect key="frame" x="0.0" y="0.0" width="259" height="302.66666666666669"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                            <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
-                                <real key="value" value="14"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8W9-MA-ojH" userLabel="Title">
-                        <rect key="frame" x="10" y="322.66666666666669" width="239" height="20.333333333333314"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                            <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
-                                <real key="value" value="10"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PR3-Sw-TNp" userLabel="Container">
+                        <rect key="frame" x="0.0" y="0.0" width="259" height="297"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="m8C-YO-T3F" userLabel="Poster Image">
+                                <rect key="frame" x="0.0" y="0.0" width="259" height="232"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
+                                        <real key="value" value="14"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Movie" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8W9-MA-ojH" userLabel="Title">
+                                <rect key="frame" x="15" y="247" width="229" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="jmK-Sb-KGA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="8W9-MA-ojH" firstAttribute="centerX" secondItem="PR3-Sw-TNp" secondAttribute="centerX" id="4Cd-vA-AVa"/>
+                            <constraint firstItem="m8C-YO-T3F" firstAttribute="bottom" secondItem="8W9-MA-ojH" secondAttribute="top" constant="-15" id="Brq-C7-a5C"/>
+                            <constraint firstItem="m8C-YO-T3F" firstAttribute="top" secondItem="PR3-Sw-TNp" secondAttribute="top" id="GL3-nq-4X1"/>
+                            <constraint firstAttribute="trailing" secondItem="8W9-MA-ojH" secondAttribute="trailing" constant="15" id="ToD-SL-Lao"/>
+                            <constraint firstAttribute="trailing" secondItem="m8C-YO-T3F" secondAttribute="trailing" id="ZxC-OS-6gP"/>
+                            <constraint firstItem="8W9-MA-ojH" firstAttribute="leading" secondItem="PR3-Sw-TNp" secondAttribute="leading" constant="15" id="agQ-SD-2Ku"/>
+                            <constraint firstAttribute="bottom" secondItem="8W9-MA-ojH" secondAttribute="bottom" id="al9-9U-g8n"/>
+                            <constraint firstItem="m8C-YO-T3F" firstAttribute="leading" secondItem="PR3-Sw-TNp" secondAttribute="leading" id="tCf-85-dcO"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="8W9-MA-ojH" secondAttribute="trailing" constant="10" id="98W-FS-5JQ"/>
-                <constraint firstItem="8W9-MA-ojH" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="9Ao-Cu-wic"/>
-                <constraint firstItem="8W9-MA-ojH" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="10" id="K7R-Dn-73u"/>
-                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="m8C-YO-T3F" secondAttribute="trailing" id="Kes-Jb-S0I"/>
-                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="8W9-MA-ojH" secondAttribute="bottom" id="eu1-o7-Pce"/>
-                <constraint firstItem="8W9-MA-ojH" firstAttribute="top" secondItem="m8C-YO-T3F" secondAttribute="bottom" constant="20" id="ezy-Ul-OQ7"/>
-                <constraint firstAttribute="top" secondItem="m8C-YO-T3F" secondAttribute="top" id="jWF-ZY-6oG"/>
-                <constraint firstItem="ZTg-uK-7eu" firstAttribute="leading" secondItem="m8C-YO-T3F" secondAttribute="leading" id="u2L-uN-E52"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="PR3-Sw-TNp" secondAttribute="bottom" id="Q9l-FM-hRZ"/>
+                <constraint firstItem="PR3-Sw-TNp" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="SxC-Bj-OON"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="PR3-Sw-TNp" secondAttribute="trailing" id="d4i-kp-M7g"/>
+                <constraint firstItem="PR3-Sw-TNp" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="o7T-9Q-Fss"/>
             </constraints>
-            <size key="customSize" width="259" height="343"/>
+            <size key="customSize" width="259" height="297"/>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="posterImage" destination="m8C-YO-T3F" id="JPe-Mp-hcx"/>
                 <outlet property="titleLabel" destination="8W9-MA-ojH" id="OSq-wF-cF8"/>
+                <outlet property="view" destination="PR3-Sw-TNp" id="356-0n-UkC"/>
             </connections>
-            <point key="canvasLocation" x="72.51908396946564" y="122.88732394366198"/>
+            <point key="canvasLocation" x="72.51908396946564" y="122.1830985915493"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

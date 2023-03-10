@@ -4,7 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Differentiator.xcscheme</key>
+		<key>Differentiator-iOS13.0.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Differentiator-iOS16.1.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -44,7 +49,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RxDataSources.xcscheme</key>
+		<key>RxDataSources-iOS13.0.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RxDataSources-iOS16.1.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RxGesture.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
