@@ -61,7 +61,7 @@ extension ApiManager {
             case .movieDiscover(let page):
                 return "https://api.themoviedb.org/3/discover/movie?api_key=\(apiKey)&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=\(page)&with_watch_monetization_types=flatrate"
             case .movieDetail(let id):
-                return "https://api.themoviedb.org/3/movie/\(id)?api_key=\(apiKey)&append_to_response=videos"
+                return "https://api.themoviedb.org/3/movie/\(id)?api_key=\(apiKey)&append_to_response=videos,images,reviews"
             }
         }
     }

@@ -71,6 +71,7 @@ extension HomeScreenView: UICollectionViewDelegateFlowLayout, UIScrollViewDelega
 
 extension HomeScreenView: MovieCellDelegate {
     func didTap(id: Int) {
-        print("id: \(id)")
+        guard let navigation = self.navigationController else { return }
+        viewModel.navigateToMovieDetailView(id: id, from: navigation)
     }
 }

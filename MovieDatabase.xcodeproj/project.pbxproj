@@ -29,6 +29,8 @@
 		22D3F61829BB011700A26EF4 /* HomeScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3F61729BB011700A26EF4 /* HomeScreenModel.swift */; };
 		22D3F61A29BB017D00A26EF4 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3F61929BB017D00A26EF4 /* HomeScreenViewModel.swift */; };
 		22D3F61E29BB023F00A26EF4 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3F61D29BB023F00A26EF4 /* ApiManager.swift */; };
+		22D3F62229BB3FF400A26EF4 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3F62029BB3FF400A26EF4 /* ImageCell.swift */; };
+		22D3F62329BB3FF400A26EF4 /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22D3F62129BB3FF400A26EF4 /* ImageCell.xib */; };
 		7DCDE6FE442962C7F1481625 /* libPods-MovieDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C11DECCA91A7A7E132E77737 /* libPods-MovieDatabase.a */; };
 		A3C285177AB55DB3B49FEA10 /* libPods-MovieDatabaseTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D74CA4F07CC9184CC80126A2 /* libPods-MovieDatabaseTests.a */; };
 /* End PBXBuildFile section */
@@ -79,6 +81,8 @@
 		22D3F61729BB011700A26EF4 /* HomeScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenModel.swift; sourceTree = "<group>"; };
 		22D3F61929BB017D00A26EF4 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
 		22D3F61D29BB023F00A26EF4 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		22D3F62029BB3FF400A26EF4 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		22D3F62129BB3FF400A26EF4 /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		22F7ECA729BA089000F2434D /* libKingfisher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libKingfisher.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B373343DF2B7B9E254E89DE /* Pods-MovieDatabaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieDatabaseTests.release.xcconfig"; path = "Target Support Files/Pods-MovieDatabaseTests/Pods-MovieDatabaseTests.release.xcconfig"; sourceTree = "<group>"; };
 		4CF7AED150CF640918ABBEEA /* Pods-MovieDatabase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieDatabase.debug.xcconfig"; path = "Target Support Files/Pods-MovieDatabase/Pods-MovieDatabase.debug.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +210,7 @@
 		22D3F60E29BAE15B00A26EF4 /* MovieDetail */ = {
 			isa = PBXGroup;
 			children = (
+				22D3F61F29BB3FA900A26EF4 /* Cells */,
 				22D3F60F29BAE16D00A26EF4 /* MovieDetailView.storyboard */,
 				22D3F61129BAF1BD00A26EF4 /* MovieDetailView.swift */,
 				22D3F61329BAF3B700A26EF4 /* MovieDetailViewModel.swift */,
@@ -220,6 +225,15 @@
 				22D3F61D29BB023F00A26EF4 /* ApiManager.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		22D3F61F29BB3FA900A26EF4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				22D3F62029BB3FF400A26EF4 /* ImageCell.swift */,
+				22D3F62129BB3FF400A26EF4 /* ImageCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		6641E4FDC85A557F8B86CA28 /* Frameworks */ = {
@@ -361,6 +375,7 @@
 			files = (
 				222B834229B9FC7600AB4C73 /* MovieCell.xib in Resources */,
 				22D3F61029BAE16D00A26EF4 /* MovieDetailView.storyboard in Resources */,
+				22D3F62329BB3FF400A26EF4 /* ImageCell.xib in Resources */,
 				22D18A7329B9D9DD006CF207 /* HomeScreenView.storyboard in Resources */,
 				22D18A4D29B9D916006CF207 /* LaunchScreen.storyboard in Resources */,
 				22D18A4A29B9D916006CF207 /* Assets.xcassets in Resources */,
@@ -463,6 +478,7 @@
 				22D18A4129B9D913006CF207 /* AppDelegate.swift in Sources */,
 				22D18A4329B9D913006CF207 /* SceneDelegate.swift in Sources */,
 				22D18A7529B9D9ED006CF207 /* HomeScreenView.swift in Sources */,
+				22D3F62229BB3FF400A26EF4 /* ImageCell.swift in Sources */,
 				22D3F61829BB011700A26EF4 /* HomeScreenModel.swift in Sources */,
 				22D3F61E29BB023F00A26EF4 /* ApiManager.swift in Sources */,
 				22D3F61629BAF3C000A26EF4 /* MovieDetailModel.swift in Sources */,

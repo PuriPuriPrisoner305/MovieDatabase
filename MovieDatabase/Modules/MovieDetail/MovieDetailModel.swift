@@ -8,7 +8,7 @@
 import Foundation
 
 struct MovieDetailEntity: Codable {
-    let title, releaseDate: String?
+    let title, releaseDate, overview: String?
     let runtime, voteCount: Int?
     let vote: Double?
     let images: ImageEntity?
@@ -16,7 +16,7 @@ struct MovieDetailEntity: Codable {
     let videos: VideoEntity?
     
     enum CodingKeys: String, CodingKey {
-        case title, runtime, vote, images, videos, reviews
+        case title, runtime, vote, images, videos, reviews, overview
         case releaseDate = "release_date"
         case voteCount = "vote_count"
     }

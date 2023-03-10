@@ -19,9 +19,9 @@ class HomeScreenViewModel {
     // MARK: API Call for movies discover
     func fetchData() {
         apiManager.fetchData(.movieDiscover(page: pageCounter))
-            .subscribe(onNext: { [weak self] (data: MovieDiscoverEntity) in
+            .subscribe(onNext: { [weak self] (data: MovieDiscoverEntity?) in
                 guard let self = self,
-                      let data = data.results
+                      let data = data?.results
                 else { return }
                 do {
                     try self.movieList.onNext(self.movieList.value() + data)
@@ -32,5 +32,18 @@ class HomeScreenViewModel {
             }, onError: { error in
                 // error handling
             }).disposed(by: bag)
+    }
+}
+
+// MARK: Navigator
+extension HomeScreenViewModel {
+    func navigateToMovieDetailView(id: Int, from navigation: UINavigationController) {
+        let storyboardId = String(describing: MovieDetailView.self)
+        let storyboard = UIStoryboard(name: storyboardId, bundle: nil)
+        guard let view = storyboard.instantiateViewController(withIdentifier: storyboardId) as? MovieDetailView else {
+            fatalError("Error laoding storyboard")
+        }
+        view.movieID = id
+        navigation.pushViewController(view, animated: true)
     }
 }
