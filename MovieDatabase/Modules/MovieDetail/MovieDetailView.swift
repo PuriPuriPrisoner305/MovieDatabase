@@ -34,7 +34,6 @@ class MovieDetailView: UIViewController {
         super.viewDidLoad()
         setupCollectionView()
         setupAction()
-        fetchDetailData()
         setupVideoPlayer()
         setupNetworkMonitor()
     }
@@ -47,7 +46,7 @@ class MovieDetailView: UIViewController {
         retryButton.rx.tapGesture()
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                self.viewModel.fetchMovieDetail(id: self.movieID)
+                self.fetchDetailData()
             }).disposed(by: bag)
         
         viewModel.onSuccessFetchData
@@ -136,7 +135,7 @@ class MovieDetailView: UIViewController {
                     print(GeneralType.networkConnected.description)
                     self.movieDetailView.isHidden = false
                     self.errorView.isHidden = true
-                    self.viewModel.fetchMovieDetail(id: self.movieID)
+                    self.fetchDetailData()
                 } else {
                     print(GeneralType.networkDisconnected.description)
                     self.movieDetailView.isHidden = true

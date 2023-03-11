@@ -65,9 +65,6 @@ class HomeScreenView: UIViewController {
     }
     
     func setupView() {
-        // load data
-        viewModel.fetchData()
-
         // setup background
         collectionView.backgroundColor = UIColor.clear
         
