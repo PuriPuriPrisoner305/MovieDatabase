@@ -21,6 +21,7 @@ class HomeScreenView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         viewModel.fetchData()
         registerDataBinding()
     }
@@ -32,6 +33,7 @@ class HomeScreenView: UIViewController {
                 cellIdentifier: MovieCell.identifier,
                 cellType: MovieCell.self)) { [weak self] (_, item, cell) in
                     guard let self = self else { return }
+                    cell.backgroundColor = UIColor.clear
                     cell.posterImage.kf.setImage(with: self.apiManager.getImageUrl(item.posterImage ?? ""))
                     cell.titleLabel.text = item.title ?? "-"
                     cell.movieId = item.id ?? 0
@@ -53,6 +55,15 @@ class HomeScreenView: UIViewController {
         collectionView.rx.setDelegate(self).disposed(by: bag)
     }
     
+    func setupView() {
+        // setup background
+        collectionView.backgroundColor = UIColor.clear
+        
+        // setup navigation
+        navigationItem.title = "Discover"
+
+    }
+    
 }
 
 extension HomeScreenView: UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
@@ -70,8 +81,8 @@ extension HomeScreenView: UICollectionViewDelegateFlowLayout, UIScrollViewDelega
 }
 
 extension HomeScreenView: MovieCellDelegate {
-    func didTap(id: Int) {
+    func didTap(id: Int, title: String) {
         guard let navigation = self.navigationController else { return }
-        viewModel.navigateToMovieDetailView(id: id, from: navigation)
+        viewModel.navigateToMovieDetailView(id: id, title: title, from: navigation)
     }
 }

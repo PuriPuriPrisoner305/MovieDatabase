@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 
 protocol MovieCellDelegate {
-    func didTap(id: Int)
+    func didTap(id: Int, title: String)
 }
 
 class MovieCell: UICollectionViewCell {
@@ -43,7 +43,7 @@ class MovieCell: UICollectionViewCell {
             .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                self.delegate?.didTap(id: self.movieId)
+                self.delegate?.didTap(id: self.movieId, title: self.titleLabel.text ?? "-")
             }).disposed(by: bag)
     }
 }

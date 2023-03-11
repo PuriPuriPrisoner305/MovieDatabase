@@ -48,6 +48,11 @@ class ApiManager {
         return URL(string: imageUrl)
     }
     
+    func getAvatarUrl(_ url: String) -> URL? {
+        let imageUrl = "https://image.tmdb.org/t/p/w200/" + url
+        return URL(string: imageUrl)
+    }
+    
 }
 
 extension ApiManager {

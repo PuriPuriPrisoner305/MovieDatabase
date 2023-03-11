@@ -65,5 +65,21 @@ struct ReviewEntity: Codable {
 }
 
 struct ReviewResultEntity: Codable {
-    let author, contents: String?
+    let author, content: String?
+    let authorDetails: AuthorDetailEntity?
+    
+    enum CodingKeys: String, CodingKey {
+        case author, content
+        case authorDetails = "author_details"
+    }
+}
+
+struct AuthorDetailEntity: Codable {
+    let avatarPath: String?
+    let rating: Double?
+    
+    enum CodingKeys: String, CodingKey {
+        case rating
+        case avatarPath = "avatar_path"
+    }
 }
