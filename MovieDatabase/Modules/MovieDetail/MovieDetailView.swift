@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import SkeletonView
 import RxSwift
 import YouTubePlayer
 import Network
+import Kingfisher
 
 class MovieDetailView: UIViewController {
     @IBOutlet weak var movieDetailView: UIScrollView!
@@ -19,6 +21,7 @@ class MovieDetailView: UIViewController {
     @IBOutlet weak var overviewInfoLabel: UILabel!
     @IBOutlet weak var videoPlayer: YouTubePlayerView!
     @IBOutlet weak var trailerView: UIView!
+    @IBOutlet weak var emptyReviewLabel: UILabel!
     
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
@@ -36,6 +39,7 @@ class MovieDetailView: UIViewController {
         setupAction()
         setupVideoPlayer()
         setupNetworkMonitor()
+        isShowingSkeleton(true)
     }
     // fetch movie data
     func fetchDetailData() {
@@ -58,15 +62,30 @@ class MovieDetailView: UIViewController {
                     self.setupView()
                     self.setupPageView()
                     self.setupVideoPlayer()
+                    self.isShowingSkeleton(false)
                 }
                 self.setupErrorView(isError: !value)
 
             }).disposed(by: bag)
     }
     
+    func isShowingSkeleton(_ value: Bool) {
+        if value {
+            movieDetailView.showGradientSkeleton(animated: true, delay: 0)
+            imageCollectionView.showGradientSkeleton(animated: true, delay:0)
+            reviewCollectionView.showGradientSkeleton(animated: true, delay:0)
+        } else {
+            movieDetailView.hideSkeleton()
+            imageCollectionView.hideSkeleton()
+            setupTimer()
+        }
+
+    }
+    
     func setupCollectionView() {
         imageCollectionView.register(ImageCell.nib, forCellWithReuseIdentifier: ImageCell.identifier)
         reviewCollectionView.register(ReviewCell.nib, forCellWithReuseIdentifier: ReviewCell.identifier)
+
     }
     
     func setupView() {
@@ -77,7 +96,6 @@ class MovieDetailView: UIViewController {
     func setupPageView() {
         self.pageView.currentPage = 0
         self.pageView.numberOfPages = viewModel.imageUrl.count
-        self.setupTimer()
     }
     
     //MARK: setup timer for movie images auto scroll
@@ -153,11 +171,26 @@ class MovieDetailView: UIViewController {
 
 }
 
-extension MovieDetailView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension MovieDetailView: SkeletonCollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        if skeletonView == imageCollectionView {
+            return ImageCell.identifier
+        } else {
+            return ReviewCell.identifier
+        }
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == imageCollectionView {
             return viewModel.imageUrl.count
         } else if collectionView == reviewCollectionView {
+            let data = viewModel.reviewData
+            reviewCollectionView.isHidden = data.isEmpty
+            emptyReviewLabel.isHidden = !data.isEmpty
             return viewModel.reviewData.count
         }
         return 0
@@ -166,12 +199,13 @@ extension MovieDetailView: UICollectionViewDataSource, UICollectionViewDelegateF
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == imageCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.identifier, for: indexPath) as! ImageCell
+            cell.imageView.kf.indicatorType = .activity
             cell.imageView.kf.setImage(with: viewModel.imageUrl[indexPath.row])
             return cell
         } else if collectionView == reviewCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewCell.identifier, for: indexPath) as! ReviewCell
             
-            guard let data = viewModel.movieDetail?.reviews?.results?[indexPath.row] else { return UICollectionViewCell() }
+            guard let data = viewModel.reviewData[indexPath.row] else { return UICollectionViewCell() }
             cell.authorNameLabel.text = data.author ?? "-"
             cell.reviewLabel.text = data.content ?? "-"
             let url = apiManager.getAvatarUrl(viewModel.reviewData[indexPath.row]?.authorDetails?.avatarPath ?? "")
@@ -213,4 +247,5 @@ extension MovieDetailView: UICollectionViewDataSource, UICollectionViewDelegateF
         }
     }
 }
+
 

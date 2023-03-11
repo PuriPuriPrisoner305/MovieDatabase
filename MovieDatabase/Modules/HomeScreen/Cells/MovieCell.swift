@@ -34,8 +34,6 @@ class MovieCell: UICollectionViewCell {
     
     func configure(_ imageView: UIImageView) {
         imageView.layer.cornerRadius = 14
-        imageView.showGradientSkeleton(animated: true, delay: 0)
-        titleLabel.showGradientSkeleton(animated: true, delay: 0)
     }
     
     func setup() {

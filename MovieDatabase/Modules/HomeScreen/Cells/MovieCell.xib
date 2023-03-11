@@ -56,6 +56,9 @@
                             <constraint firstAttribute="bottom" secondItem="8W9-MA-ojH" secondAttribute="bottom" id="al9-9U-g8n"/>
                             <constraint firstItem="m8C-YO-T3F" firstAttribute="leading" secondItem="PR3-Sw-TNp" secondAttribute="leading" id="tCf-85-dcO"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
             </view>

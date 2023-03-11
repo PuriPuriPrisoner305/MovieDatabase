@@ -8,6 +8,8 @@
 import UIKit
 
 @main
+// MARK: (UI Warning) Youtube player framework is using WebKit and might show UI error but tested fine.
+// Please consider it as framework's bugs.
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 

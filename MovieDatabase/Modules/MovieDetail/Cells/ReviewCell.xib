@@ -111,6 +111,9 @@
                             <constraint firstItem="OUw-zb-LiZ" firstAttribute="top" secondItem="eQO-6w-uNk" secondAttribute="bottom" constant="20" id="ZuR-nb-Bsz"/>
                             <constraint firstItem="OUw-zb-LiZ" firstAttribute="leading" secondItem="bbF-NE-Ikx" secondAttribute="leading" id="dTm-JO-j35"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
             </view>
@@ -122,6 +125,9 @@
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="bQ6-py-Mqc" secondAttribute="bottom" id="qzT-1i-vXI"/>
             </constraints>
             <size key="customSize" width="436" height="238"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="authorNameLabel" destination="J91-Jp-ChR" id="o9w-uc-Ai8"/>
                 <outlet property="avatarImageView" destination="8m5-6b-KLT" id="IqV-fN-Rn4"/>

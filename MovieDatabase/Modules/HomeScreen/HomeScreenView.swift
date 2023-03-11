@@ -9,7 +9,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Kingfisher
-import SkeletonView
 import RxGesture
 import Network
 
@@ -42,12 +41,11 @@ class HomeScreenView: UIViewController {
                 cellType: MovieCell.self)) { [weak self] (_, item, cell) in
                     guard let self = self else { return }
                     cell.backgroundColor = UIColor.clear
+                    cell.posterImage.kf.indicatorType = .activity
                     cell.posterImage.kf.setImage(with: self.apiManager.getImageUrl(item.posterImage ?? ""))
                     cell.titleLabel.text = item.title ?? "-"
                     cell.movieId = item.id ?? 0
                     cell.delegate = self
-                    cell.posterImage.hideSkeleton()
-                    cell.titleLabel.hideSkeleton()
             }
             .disposed(by: bag)
         

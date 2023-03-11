@@ -19,6 +19,9 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pF9-Kp-xQ6">
                         <rect key="frame" x="0.0" y="0.0" width="295" height="187"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                 </subviews>
             </view>
@@ -30,6 +33,9 @@
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="pF9-Kp-xQ6" secondAttribute="bottom" id="OvC-OP-R0u"/>
             </constraints>
             <size key="customSize" width="295" height="187"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="imageView" destination="pF9-Kp-xQ6" id="Soi-uK-tCk"/>
             </connections>
