@@ -40,11 +40,32 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="46m-Dh-lR4">
+                                                <rect key="frame" x="0.0" y="29" width="49" height="20"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★ 10.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jq-7t-3tF" userLabel="Rating">
+                                                        <rect key="frame" x="5" y="3" width="39" height="14"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="4jq-7t-3tF" secondAttribute="bottom" constant="3" id="Jgp-59-I1L"/>
+                                                    <constraint firstAttribute="trailing" secondItem="4jq-7t-3tF" secondAttribute="trailing" constant="5" id="QlI-Rg-Tv6"/>
+                                                    <constraint firstItem="4jq-7t-3tF" firstAttribute="top" secondItem="46m-Dh-lR4" secondAttribute="top" constant="3" id="dGN-Lr-ukx"/>
+                                                    <constraint firstItem="4jq-7t-3tF" firstAttribute="leading" secondItem="46m-Dh-lR4" secondAttribute="leading" constant="5" id="oX5-xq-VOs"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="J91-Jp-ChR" firstAttribute="top" secondItem="bbF-NE-Ikx" secondAttribute="top" constant="10" id="HCx-tX-hjk"/>
+                                            <constraint firstItem="46m-Dh-lR4" firstAttribute="top" secondItem="J91-Jp-ChR" secondAttribute="bottom" constant="2" id="X5R-0j-h6h"/>
                                             <constraint firstItem="J91-Jp-ChR" firstAttribute="leading" secondItem="bbF-NE-Ikx" secondAttribute="leading" id="jfJ-Jf-Ldp"/>
+                                            <constraint firstItem="46m-Dh-lR4" firstAttribute="leading" secondItem="J91-Jp-ChR" secondAttribute="leading" id="t46-pO-lQ4"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -105,6 +126,8 @@
             <connections>
                 <outlet property="authorNameLabel" destination="J91-Jp-ChR" id="o9w-uc-Ai8"/>
                 <outlet property="avatarImageView" destination="8m5-6b-KLT" id="IqV-fN-Rn4"/>
+                <outlet property="ratingLabel" destination="4jq-7t-3tF" id="P58-Ew-0zl"/>
+                <outlet property="ratingView" destination="46m-Dh-lR4" id="sSS-xo-ds6"/>
                 <outlet property="reviewLabel" destination="555-JU-RM3" id="VTX-UX-aLa"/>
             </connections>
             <point key="canvasLocation" x="241.22137404580153" y="85.91549295774648"/>

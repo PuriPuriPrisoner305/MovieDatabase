@@ -115,10 +115,12 @@ extension MovieDetailView: UICollectionViewDataSource, UICollectionViewDelegateF
             cell.reviewLabel.text = data.content ?? "-"
             let url = apiManager.getAvatarUrl(viewModel.reviewData[indexPath.row]?.authorDetails?.avatarPath ?? "")
             cell.avatarImageView.kf.setImage(with: url, placeholder: UIImage(systemName: "person.fill"))
-            cell.avatarImageView.layer.cornerRadius = cell.avatarImageView.frame.height / 2
-            cell.avatarImageView.layer.borderWidth = 2.0
-            cell.avatarImageView.layer.borderColor = UIColor.white.cgColor
-            cell.clipsToBounds = true
+            if let rating = viewModel.reviewData[indexPath.row]?.authorDetails?.rating {
+                cell.ratingLabel.text = "★ \(String(format: "%.1f", rating))"
+            } else {
+                cell.ratingView.isHidden = true
+            }
+            
             return cell
         }
         return UICollectionViewCell()

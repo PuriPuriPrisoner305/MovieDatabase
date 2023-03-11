@@ -61,7 +61,6 @@ class HomeScreenView: UIViewController {
         
         // setup navigation
         navigationItem.title = "Discover"
-
     }
     
 }
