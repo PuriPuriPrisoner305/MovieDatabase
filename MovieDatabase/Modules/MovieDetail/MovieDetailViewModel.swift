@@ -23,7 +23,10 @@ class MovieDetailViewModel {
             .subscribe(onNext: { [weak self] (data: MovieDetailEntity?) in
                 guard let self = self,
                       let data = data
-                else { return }
+                else {
+                    self?.onSuccessFetchData.onNext(false)
+                    return
+                }
                 self.movieDetail = data
                 self.imageUrl = self.getImageUrl(self.movieDetail?.images?.backdrops)
                 self.reviewData = self.getReviewData(data.reviews?.results) ?? []
@@ -31,6 +34,7 @@ class MovieDetailViewModel {
             }, onError: { error in
                 // error handling
                 self.onSuccessFetchData.onNext(false)
+                print(error)
             }).disposed(by: bag)
     }
     
@@ -55,13 +59,22 @@ class MovieDetailViewModel {
         var dataArray: [ReviewResultEntity]
         dataArray = data.count >= 5 ? Array(data.prefix(5)) : data
         
-//        var imageUrl = [URL?]()
-//        for i in 0...data.count - 1 {
-//            if i >= 5 { break }
-//            let url = apiManager.getAvatarUrl(dataArray[i].authorDetails?.avatarPath ?? "")
-//            imageUrl.append(url)
-//        }
-//
         return dataArray
+    }
+    
+    func getOverviewInfo() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter.date(from: movieDetail?.releaseDate ?? "")
+        if Locale.current.languageCode == "id" {
+            dateFormatter.locale = Locale(identifier: "id_ID")
+        } else {
+            dateFormatter.locale = Locale(identifier: "en_ID")
+        }
+        dateFormatter.dateFormat = "yyyy"
+        
+        let year = dateFormatter.string(from: date ?? Date())
+        let info = "\(movieDetail?.genres?[0].name ?? "-") · \(year) · \(movieDetail?.runtime ?? 0) minutes"
+        return info
     }
 }

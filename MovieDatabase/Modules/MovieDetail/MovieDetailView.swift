@@ -8,33 +8,48 @@
 import UIKit
 import RxSwift
 import YouTubePlayer
+import Network
 
 class MovieDetailView: UIViewController {
+    @IBOutlet weak var movieDetailView: UIScrollView!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var reviewCollectionView: UICollectionView!
     @IBOutlet weak var pageView: UIPageControl!
     @IBOutlet weak var overviewDetailLabel: UILabel!
+    @IBOutlet weak var overviewInfoLabel: UILabel!
     @IBOutlet weak var videoPlayer: YouTubePlayerView!
     @IBOutlet weak var trailerView: UIView!
     
+    @IBOutlet weak var errorView: UIView!
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var retryButton: UIButton!
     var viewModel = MovieDetailViewModel()
     var apiManager = ApiManager()
     var movieID = 0
     let bag = DisposeBag()
+    var timer: Timer?
+    var monitor = NWPathMonitor()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
-        listenToViewModel()
+        setupAction()
         fetchDetailData()
         setupVideoPlayer()
+        setupNetworkMonitor()
     }
-    
+    // fetch movie data
     func fetchDetailData() {
         viewModel.fetchMovieDetail(id: movieID)
     }
     
-    func listenToViewModel() {
+    func setupAction() {
+        retryButton.rx.tapGesture()
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.viewModel.fetchMovieDetail(id: self.movieID)
+            }).disposed(by: bag)
+        
         viewModel.onSuccessFetchData
             .subscribe(onNext: { [weak self] value in
                 guard let self = self else { return }
@@ -45,6 +60,8 @@ class MovieDetailView: UIViewController {
                     self.setupPageView()
                     self.setupVideoPlayer()
                 }
+                self.setupErrorView(isError: !value)
+
             }).disposed(by: bag)
     }
     
@@ -55,15 +72,19 @@ class MovieDetailView: UIViewController {
     
     func setupView() {
         overviewDetailLabel.text = viewModel.movieDetail?.overview ?? "-"
+        overviewInfoLabel.text = viewModel.getOverviewInfo()
     }
+    
     func setupPageView() {
         self.pageView.currentPage = 0
         self.pageView.numberOfPages = viewModel.imageUrl.count
-        self.timer()
+        self.setupTimer()
     }
     
-    func timer() {
-        let timer = Timer.scheduledTimer(withTimeInterval: 4.0, repeats: true) { [weak self] timer in
+    //MARK: setup timer for movie images auto scroll
+    func setupTimer() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 4.0, repeats: true) { [weak self] timer in
             guard let self = self else { return }
             guard let currentIndexPath = self.imageCollectionView.indexPathsForVisibleItems.first else { return }
             let nextItemIndex = currentIndexPath.item + 1 < self.viewModel.imageUrl.count ? (currentIndexPath.item + 1) % (self.viewModel.movieDetail?.images?.backdrops?.count ?? 0) : 0
@@ -71,9 +92,10 @@ class MovieDetailView: UIViewController {
             self.imageCollectionView.scrollToItem(at: nextIndexPath, at: .centeredHorizontally, animated: true)
             self.pageView.currentPage = nextItemIndex
         }
-        timer.fire()
+        timer?.fire()
     }
     
+    //MARK: setup youtube video player
     func setupVideoPlayer() {
         guard let result = viewModel.movieDetail?.videos?.results else { return }
         for data in result {
@@ -84,10 +106,50 @@ class MovieDetailView: UIViewController {
                 guard let key = data.key,
                       let videoUrl = URL(string: "ttps://www.youtube.com/watch?v=\(key)")
                 else { return }
-                videoPlayer.loadVideoURL(videoUrl)
+                DispatchQueue.main.async {
+                    self.videoPlayer.loadVideoURL(videoUrl)
+                }
                 break
             }
         }
+    }
+    
+    //MARK: Setup error view
+    func setupErrorView(isError: Bool) {
+        if isError {
+            self.movieDetailView.isHidden = true
+            self.errorView.isHidden = false
+            self.errorLabel.text = ErrorType.fetchFailed.description
+            self.retryButton.isHidden = false
+        } else {
+            self.movieDetailView.isHidden = false
+            self.errorView.isHidden = true
+        }
+    }
+    
+    // MARK: Network status monitoring
+    // When compile it on simulator may behave oddly. Works well with real devices
+    func setupNetworkMonitor() {
+        monitor.pathUpdateHandler = { path in
+            DispatchQueue.main.async {
+                if path.status == .satisfied {
+                    print(GeneralType.networkConnected.description)
+                    self.movieDetailView.isHidden = false
+                    self.errorView.isHidden = true
+                    self.viewModel.fetchMovieDetail(id: self.movieID)
+                } else {
+                    print(GeneralType.networkDisconnected.description)
+                    self.movieDetailView.isHidden = true
+                    self.errorView.isHidden = false
+                    self.errorLabel.text = ErrorType.noInternet.description
+                    self.retryButton.isHidden = true
+                }
+            }
+            print(path.isExpensive)
+        }
+        
+        let queue = DispatchQueue(label: "Monitor")
+        monitor.start(queue: queue)
     }
 
 }

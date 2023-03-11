@@ -13,7 +13,7 @@ class ApiManager {
     func fetchData<T: Codable>(_ apiEndpoint: APIEndpoint) -> Observable<T> {
         return Observable.create { observer in
             guard let url = URL(string: apiEndpoint.url()) else {
-                observer.onError(NSError(domain: "Invalid URL", code: 0, userInfo: nil))
+                observer.onError(NSError(domain: ErrorType.invalidURL.description, code: 0, userInfo: nil))
                 return Disposables.create()
                 
             }
@@ -24,7 +24,7 @@ class ApiManager {
                     return
                 }
                 guard let data = data else {
-                    observer.onError(NSError(domain: "No data returned from API", code: 0, userInfo: nil))
+                    observer.onError(NSError(domain: ErrorType.emptyFetchedData.description, code: 0, userInfo: nil))
                     return
                 }
                 do {
@@ -44,12 +44,12 @@ class ApiManager {
     
     // MARK: convert string to image url with size of 500
     func getImageUrl(_ url: String) -> URL? {
-        let imageUrl = "https://image.tmdb.org/t/p/w500/" + url
+        let imageUrl = URLPath.posterImage.link + url
         return URL(string: imageUrl)
     }
     
     func getAvatarUrl(_ url: String) -> URL? {
-        let imageUrl = "https://image.tmdb.org/t/p/w200/" + url
+        let imageUrl = URLPath.avatarImage.link + url
         return URL(string: imageUrl)
     }
     
@@ -61,12 +61,11 @@ extension ApiManager {
         case movieDetail(id: Int)
         
         func url() -> String {
-            let apiKey = "f911faef7aa9f46f51a69f1843e890ba"
             switch self {
             case .movieDiscover(let page):
-                return "https://api.themoviedb.org/3/discover/movie?api_key=\(apiKey)&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=\(page)&with_watch_monetization_types=flatrate"
+                return URLPath.discoverMovie(page: page).link
             case .movieDetail(let id):
-                return "https://api.themoviedb.org/3/movie/\(id)?api_key=\(apiKey)&append_to_response=videos,images,reviews"
+                return URLPath.movieDetail(id: id).link
             }
         }
     }

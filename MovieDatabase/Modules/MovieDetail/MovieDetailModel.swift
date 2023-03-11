@@ -11,15 +11,21 @@ struct MovieDetailEntity: Codable {
     let title, releaseDate, overview: String?
     let runtime, voteCount: Int?
     let vote: Double?
+    let genres: [GenreEntiry]?
     let images: ImageEntity?
     let reviews: ReviewEntity?
     let videos: VideoEntity?
     
     enum CodingKeys: String, CodingKey {
-        case title, runtime, vote, images, videos, reviews, overview
+        case title, runtime, vote, images, videos, reviews, overview, genres
         case releaseDate = "release_date"
         case voteCount = "vote_count"
     }
+}
+
+struct GenreEntiry: Codable {
+    let id: Int?
+    let name: String?
 }
 
 struct ImageEntity: Codable {

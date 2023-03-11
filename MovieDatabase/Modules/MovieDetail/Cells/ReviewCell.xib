@@ -84,14 +84,13 @@
                                 <rect key="frame" x="80" y="85" width="341" height="119"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="555-JU-RM3" userLabel="Review Label">
-                                        <rect key="frame" x="0.0" y="0.0" width="341" height="119"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="341" height="16.333333333333332"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="555-JU-RM3" firstAttribute="height" secondItem="OUw-zb-LiZ" secondAttribute="height" id="8Rp-rs-j8X"/>
                                     <constraint firstItem="555-JU-RM3" firstAttribute="top" secondItem="OUw-zb-LiZ" secondAttribute="top" id="ANF-KU-NS5"/>
                                     <constraint firstAttribute="bottom" secondItem="555-JU-RM3" secondAttribute="bottom" id="ZZz-Bd-RNF"/>
                                     <constraint firstItem="555-JU-RM3" firstAttribute="leading" secondItem="OUw-zb-LiZ" secondAttribute="leading" id="aIg-PV-V1b"/>
